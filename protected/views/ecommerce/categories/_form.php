@@ -92,7 +92,7 @@ $this->avoidDoubleLoadJS();
 				</span>
 						<div class="clearfix"></div>
 						<br>
-						<br>
+						<br> a
 						<!-- The global progress bar -->
 						<div id="progress" class="progress">
 							<div class="progress-bar progress-bar-success"></div>

@@ -40,10 +40,13 @@ class CategoriesController extends EcommerceController
 				exit(CActiveForm::validate($model));
 			}
 		}
-
+		
+		$parent_id = isset($_GET['parent_id']) ? $_GET['parent_id'] : 0 ;
+		
 		$this->renderPartial('_form',array(
 			'model'=>$model,
-			'title'=>'Create New Category'
+			'title'=>'Create New Category',
+			'parent_id'=>$parent_id
 		),FALSE,TRUE);
 	}
 
@@ -109,15 +112,48 @@ class CategoriesController extends EcommerceController
 	{
 		$model=new ECCategory('search');
 		$model->unsetAttributes();  // clear any default values
+		$model->dbCriteria->condition='parent_id=0';
 		if(isset($_GET['ECCategory']))
 			$model->attributes=$_GET['ECCategory'];
 
 		$this->render('admin',array(
 			'title'=>'Manage Categories',
 			'model'=>$model,
+			'level'=>'level2',
+			'category_id'=>0
 		));
 	}
+	
+	public function actionChilds($category_id,$name){
+		$model=new ECCategory('search');
+		$model->unsetAttributes();  // clear any default values
+		$model->dbCriteria->condition="parent_id={$category_id}";
+		if(isset($_GET['ECCategory']))
+			$model->attributes=$_GET['ECCategory'];
 
+		$this->render('admin',array(
+			'title'=>'Manage Categories',
+			'model'=>$model,
+			'level'=>'level3',
+			'category_id'=>$category_id
+		));
+	}
+	
+	public function actionLevel3($category_id,$name){
+		$model=new ECCategory('search');
+		$model->unsetAttributes();  // clear any default values
+		$model->dbCriteria->condition="parent_id={$category_id}";
+		if(isset($_GET['ECCategory']))
+			$model->attributes=$_GET['ECCategory'];
+
+		$this->render('admin',array(
+			'title'=>'Manage Categories',
+			'model'=>$model,
+			'level'=>'level3',
+			'category_id'=>$category_id
+		));
+	}
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

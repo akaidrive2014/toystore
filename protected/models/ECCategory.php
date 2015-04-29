@@ -43,7 +43,7 @@ class ECCategory extends CActiveRecord
 			array('category_name', 'length', 'max'=>100),
 			array('seo_title', 'length', 'max'=>500),
 			array('seo_keywords, friendly_url', 'length', 'max'=>5000),
-			array('category_description, category_image, seo_description', 'safe'),
+			array('category_description, category_image, seo_description,parent_id', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('category_id, category_name, is_active, category_description, category_image, seo_title, seo_description, seo_keywords, friendly_url', 'safe', 'on'=>'search'),

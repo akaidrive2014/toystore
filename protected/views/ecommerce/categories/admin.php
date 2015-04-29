@@ -28,7 +28,7 @@ $('.search-form form').submit(function(){
 					<?php echo $title;?>
 					<?php echo CHtml::ajaxLink(
 						' <i class="glyphicon glyphicon-plus"></i> Add New ',
-						array($this->id.'/create'),
+						array($this->id.'/create?parent_id='.$category_id),
 						array('update' => ".form-x",//".content-data-x",
 							'beforeSend' => 'function(){
 							loading("show");
@@ -91,22 +91,13 @@ $('.search-form form').submit(function(){
 								),*/
 								array(
 									'class'=>'CButtonColumn',
-									'template'=>'{view} {update} {delete}',
+									'template'=>'{open} {update} {delete}',
 									'buttons'=>array(
-										  'view' => array(
+										  'open' => array(
 										  		'options' => array('data-toggle'=>'tooltip','title' => 'Open', 'class' => 'btn btn-info btn-xs'),
 						                		'label' => "<i class='fa fa-folder-open-o'></i>",
+												'url'=>'Yii::app()->createUrl("ecommerce/categories/childs", array("category_id"=>$data->category_id,"name"=>$data->category_name))',
 						                		'imageUrl' => false,
-												'click'=>"function(){
-													loading('show');
-						                           	$('.form-x').load($(this).attr('href'),function(){
-						                           		loading('hide')	
-														$('.grid-x').hide();
-						                           		$('.form-x').show();
-						                         	});
-																
-						                         return false;
-						                         }",
 											),
 										  'update' => array(
 										  		'options' => array('data-toggle'=>'tooltip','title' => 'Edit', 'class' => 'btn btn-default btn-xs'),

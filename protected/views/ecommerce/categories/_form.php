@@ -42,11 +42,7 @@ $this->avoidDoubleLoadJS();
 					<?php echo $form->labelEx($model,'category_name'); ?>
 					<?php echo $form->textField($model,'category_name',array('size'=>60,'maxlength'=>100,'class'=>'form-control')); ?>
 					<?php 
-						$parent_value = null;
-						if(isset($parent_id)){
-							$parent_value = array('value'=>$parent_id);
-						}
-						echo $form->hiddenField($model,'parent_id',array('size'=>60,'maxlength'=>100,'class'=>'form-control',$parent_value)); 
+						echo $form->hiddenField($model,'parent_id',array('size'=>60,'maxlength'=>100,'class'=>'form-control','value'=>$parent_id)); 
 					?>
 					<?php echo $form->error($model,'category_name'); ?>
 				</div>

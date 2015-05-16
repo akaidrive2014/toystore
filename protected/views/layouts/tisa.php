@@ -43,6 +43,9 @@
 		<!-- main stylesheet -->
 		<link href="<?php echo $this->baseTheme();?>/admin/tisa/assets/css/style.css" rel="stylesheet" media="screen">
 		
+		<!-- timepicker -->
+		<link rel="stylesheet" href="<?php echo $this->baseTheme();?>/admin/tisa/assets/lib/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+		
 		<!-- google webfonts -->
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400&amp;subset=latin-ext,latin' rel='stylesheet' type='text/css'>
 		
@@ -263,6 +266,9 @@
 		
 		<!--calendar-->
 		<script src="<?php echo $this->baseTheme();?>/admin/tisa/assets/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<!-- timepicker -->
+		<script src="<?php echo $this->baseTheme();?>/admin/tisa/assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+		
 	<!-- page specific plugins -->
 
 		<!-- nvd3 charts -->

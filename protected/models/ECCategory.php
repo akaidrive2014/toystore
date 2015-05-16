@@ -20,6 +20,10 @@ class ECCategory extends CActiveRecord
 		0=>'Disabled',
 		1=>'Enabled',
 	);
+
+	public $start_time;
+	public $end_time;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -43,7 +47,7 @@ class ECCategory extends CActiveRecord
 			array('category_name', 'length', 'max'=>100),
 			array('seo_title', 'length', 'max'=>500),
 			array('seo_keywords, friendly_url', 'length', 'max'=>5000),
-			array('category_description, category_image, seo_description,parent_id', 'safe'),
+			array('category_description, category_image, seo_description,parent_id,start_time,end_time,discount_start,discount_end', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('category_id, category_name, is_active, category_description, category_image, seo_title, seo_description, seo_keywords, friendly_url', 'safe', 'on'=>'search'),
@@ -67,6 +71,15 @@ class ECCategory extends CActiveRecord
 			if(!empty($this->friendly_url)){
 				$this->friendly_url = Website::slug($this->friendly_url);
 			}
+			
+			if(!empty($this->discount_start)){
+			      $this->discount_start = date("Y-m-d",strtotime($this->discount_start)).' '.$this->start_time;
+			}
+			
+			if(!empty($this->discount_end)){
+				$this->discount_end = date("Y-m-d",strtotime($this->discount_end)).' '.$this->end_time;
+			}
+			
 			return true;
 		}
 	}
